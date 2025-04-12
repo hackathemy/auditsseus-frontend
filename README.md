@@ -43,13 +43,17 @@ Furthermore, based on the analysis, Auditsseus assists in automatically register
 - Based on the plagiarism report, users can opt to automatically register the content as NFT IP via **Story Protocol**
 
 ## How to use Sponsor
-- **Story Protocol:** 
+- **Story Protocol:**
+We automate the process of registering IPs using the Story Protocol and add an action that provides an audit before registering IP assets. When an audit is received, the uploaded image is compared with the IP assets searched and learned in the Story Protocol to measure the plagiarism rate and inform the user of the results. Users can later register assets with IPs and register audit results with IPs as well.
 
-- **Upstage:**  
+- **Upstage:**
+I created an Eliza plugin using the Upstage API. Using the document parsing function and information extraction, the agent learns and provides content descriptions to the user based on that. It also provides audits when registering document IPs by determining the similarity with other documents.
 
 - **PIN AI:**
-
-## Key Features  
+Auditsseus is a personalized AI agent that analyzes user-generated content—such as images, papers, and videos—for potential plagiarism by comparing it to existing IPs. 
+It then enables seamless on-chain IP registration via Story Protocol. 
+Users interact naturally with the agent (e.g., “Check for plagiarism” or “Register as IP”), and the service automatically processes the request. 
+Fully open-sourced and team-built, Auditsseus aligns perfectly with the PIN AI bounty by showcasing how personal data can drive useful, automated, and personalized AI workflows in real-world scenarios.
 
 ## Business Model  
 **IP Registration Fee**
