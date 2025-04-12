@@ -6,8 +6,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, Image as ImageIcon, ExternalLink } from "lucide-react";
 
-// API 엔드포인트 환경 변수 사용
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+// 클라이언트에서는 환경 변수가 필요하지 않음
 
 interface MessageResponse {
   user: string;
@@ -41,13 +40,19 @@ export function Chat({ onImageUploadClick }: ChatProps) {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/Sseus/message`, {
+      // 내부 API 라우트 호출
+      const response = await fetch('/api/message', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ text: input }),
       });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `API 요청 실패: ${response.status}`);
+      }
 
       const data = await response.json();
       
@@ -67,7 +72,15 @@ export function Chat({ onImageUploadClick }: ChatProps) {
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setMessages(prev => [...prev, { text: "Error: Could not get response", isUser: false }]);
+      let errorMessage = "Error: Could not get response";
+      
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        errorMessage = "요청 시간이 초과되었습니다. 나중에 다시 시도해 주세요.";
+      } else if (error instanceof Error) {
+        errorMessage = `오류가 발생했습니다: ${error.message}`;
+      }
+      
+      setMessages(prev => [...prev, { text: errorMessage, isUser: false }]);
     } finally {
       setIsLoading(false);
       
