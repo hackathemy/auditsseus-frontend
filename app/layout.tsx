@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Audit Shield - AI 블록체인 감사 서비스",
-  description: "AI 기술을 활용한 NFT 이미지와 코인 백서 감사 서비스로 독창성과 신뢰성을 검증합니다.",
+  title: "Auditsseus - For IP, By the IP, With IP",
+  description: "Protect Your Creativity, Audit Your IP. Auditsseus is an AI audit assistant service that automatically analyzes AI-generated creative content and compares it with existing IPs to detect potential plagiarism.",
 };
 
 export default function RootLayout({

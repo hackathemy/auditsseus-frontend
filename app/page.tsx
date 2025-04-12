@@ -57,10 +57,10 @@ export default function Home() {
     if (!accountArray || accountArray.length === 0) {
       setIsConnected(false);
       setAccount("");
-      toast.error("지갑 연결이 해제되었습니다.");
+      toast.error("Wallet disconnected");
     } else {
       setAccount(accountArray[0]);
-      toast.info("계정이 변경되었습니다.", {
+      toast.info("Account changed", {
         description: `${formatAddress(accountArray[0])}`,
       });
     }
@@ -95,7 +95,7 @@ export default function Home() {
   const checkIfWalletIsConnected = async () => {
     try {
       if (!window.ethereum) {
-        console.log("메타마스크를 설치해주세요!");
+        console.log("Please install MetaMask!");
         return;
       }
 
@@ -108,17 +108,17 @@ export default function Home() {
         setChainId(chainIdHex);
       }
     } catch (error) {
-      console.error("지갑 연결 확인 중 오류 발생:", error);
+      console.error("Error checking wallet connection:", error);
     }
   };
 
   // 메타마스크 연결
   const connectWallet = async () => {
     if (!window.ethereum) {
-      toast.error("메타마스크를 설치해주세요!", {
-        description: "이 서비스를 이용하려면 메타마스크 설치가 필요합니다.",
+      toast.error("Please install MetaMask!", {
+        description: "MetaMask installation is required to use this service.",
         action: {
-          label: "설치하기",
+          label: "Install",
           onClick: () => window.open("https://metamask.io/download/", "_blank")
         },
       });
@@ -136,17 +136,17 @@ export default function Home() {
         setIsConnected(true);
         setChainId(chainIdHex);
         
-        toast.success("지갑이 연결되었습니다!", {
+        toast.success("Wallet connected!", {
           description: `${formatAddress(accounts[0])}`,
         });
       }
     } catch (error) {
       const ethError = error as EthereumError;
       if (ethError.code === 4001) {
-        toast.error("연결이 거부되었습니다.");
+        toast.error("Connection rejected");
       } else {
         console.error(error);
-        toast.error("연결 중 오류가 발생했습니다.");
+        toast.error("Connection error occurred");
       }
     } finally {
       setIsConnecting(false);
@@ -184,7 +184,7 @@ export default function Home() {
         <div className="container mx-auto py-4 px-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-6 w-6 text-blue-400" />
-            <h1 className="text-xl font-bold">Audit Shield</h1>
+            <h1 className="text-xl font-bold">Auditsseus</h1>
           </div>
           <nav className="hidden md:flex items-center space-x-1">
             <Button 
@@ -227,10 +227,10 @@ export default function Home() {
             >
               <Wallet className="h-4 w-4 mr-2" />
               {isConnecting 
-                ? "연결 중..." 
+                ? "Connecting..." 
                 : isConnected 
-                  ? "연결됨" 
-                  : "지갑 연결하기"}
+                  ? "Connected" 
+                  : "Connect Wallet"}
             </Button>
           </div>
         </div>
@@ -271,9 +271,9 @@ export default function Home() {
                   <AlertCircle className="h-6 w-6 text-blue-400" />
                 </div>
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-lg font-semibold text-slate-200 mb-1">지갑 연결이 필요합니다</h3>
+                  <h3 className="text-lg font-semibold text-slate-200 mb-1">Wallet Connection Required</h3>
                   <p className="text-slate-400 text-sm mb-3">
-                    감사 서비스를 이용하려면 메타마스크를 연결해주세요.
+                    Connect MetaMask to access IP audit services.
                   </p>
                   <Button 
                     className="bg-blue-400 hover:bg-blue-500 text-slate-900 rounded-full"
@@ -281,7 +281,7 @@ export default function Home() {
                     disabled={isConnecting}
                   >
                     <Wallet className="h-4 w-4 mr-2" />
-                    {isConnecting ? "연결 중..." : "지갑 연결하기"}
+                    {isConnecting ? "Connecting..." : "Connect Wallet"}
                   </Button>
                 </div>
               </CardContent>
@@ -294,10 +294,10 @@ export default function Home() {
           <div className="max-w-3xl mx-auto mb-8">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
-                NFT Image Audit Service
+                NFT Audit Service
               </h2>
               <p className="text-lg text-slate-400">
-                AI가 NFT 이미지를 분석하여 독창성과 저작권 침해 여부를 확인합니다
+                Analyze AI-generated NFT images for originality and potential IP infringement
               </p>
             </div>
 
@@ -308,12 +308,12 @@ export default function Home() {
                     <div className="flex justify-between items-center">
                       <div className="flex items-center">
                         <ImageIcon className="h-5 w-5 text-blue-400 mr-2" />
-                        <h3 className="text-lg font-semibold">NFT 이미지 업로드</h3>
+                        <h3 className="text-lg font-semibold">Upload NFT Image</h3>
                       </div>
                       <div className="flex gap-2">
                         <div className="flex items-center text-xs font-medium text-slate-400 bg-slate-900 rounded-full px-3 py-1 border border-slate-700">
                           <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
-                          AI 분석 지원
+                          AI Analysis
                         </div>
                       </div>
                     </div>
@@ -328,27 +328,27 @@ export default function Home() {
                     <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                       <FileCheck className="h-5 w-5 text-blue-400" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">독창성 검증</h3>
+                    <h3 className="font-bold text-lg mb-2">Similarity Analysis</h3>
                     <p className="text-slate-400 text-sm">
-                      AI가 NFT 이미지의 독창성을 평가하고 유사 작품과 비교 분석합니다.
+                      AI vectorizes and compares images with existing IP collections in real-time.
                     </p>
                   </div>
                   <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
                     <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                       <ShieldCheck className="h-5 w-5 text-blue-400" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">저작권 검사</h3>
+                    <h3 className="font-bold text-lg mb-2">Plagiarism Detection</h3>
                     <p className="text-slate-400 text-sm">
-                      글로벌 데이터베이스와 대조하여 저작권 침해 가능성을 진단합니다.
+                      Get detailed reports with plagiarism rates and similar references.
                     </p>
                   </div>
                   <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
                     <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                       <ExternalLink className="h-5 w-5 text-blue-400" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">인증서 발급</h3>
+                    <h3 className="font-bold text-lg mb-2">On-Chain Registration</h3>
                     <p className="text-slate-400 text-sm">
-                      검증된 NFT에 대한 인증서를 블록체인에 기록하여 영구 보존합니다.
+                      Automatically register verified content as on-chain IP using Story Protocol.
                     </p>
                   </div>
                 </div>
@@ -365,7 +365,7 @@ export default function Home() {
                 Whitepaper Audit Service
               </h2>
               <p className="text-lg text-slate-400">
-                AI가 코인 백서의 내용을 분석하여 신뢰성과 표절 여부를 검증합니다
+                Analyze documents and papers for originality and potential intellectual property conflicts
               </p>
             </div>
 
@@ -376,12 +376,12 @@ export default function Home() {
                     <div className="flex justify-between items-center">
                       <div className="flex items-center">
                         <FileText className="h-5 w-5 text-blue-400 mr-2" />
-                        <h3 className="text-lg font-semibold">백서 업로드</h3>
+                        <h3 className="text-lg font-semibold">Upload Document</h3>
                       </div>
                       <div className="flex gap-2">
                         <div className="flex items-center text-xs font-medium text-slate-400 bg-slate-900 rounded-full px-3 py-1 border border-slate-700">
                           <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
-                          PDF 분석
+                          PDF Analysis
                         </div>
                       </div>
                     </div>
@@ -396,27 +396,27 @@ export default function Home() {
                     <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                       <FileText className="h-5 w-5 text-blue-400" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">표절 검사</h3>
+                    <h3 className="font-bold text-lg mb-2">Content Analysis</h3>
                     <p className="text-slate-400 text-sm">
-                      AI가 백서의 내용을 분석하여 다른 프로젝트와의 유사성을 검사합니다.
+                      Analyze document content and compare with existing works for similarity.
                     </p>
                   </div>
                   <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
                     <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                       <GanttChartSquare className="h-5 w-5 text-blue-400" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">로드맵 분석</h3>
+                    <h3 className="font-bold text-lg mb-2">Structural Analysis</h3>
                     <p className="text-slate-400 text-sm">
-                      프로젝트 로드맵의 실현 가능성과 구체성을 평가합니다.
+                      Evaluate document structure and idea originality to detect similar sources.
                     </p>
                   </div>
                   <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
                     <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                       <ShieldCheck className="h-5 w-5 text-blue-400" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">신뢰성 인증</h3>
+                    <h3 className="font-bold text-lg mb-2">IP Protection</h3>
                     <p className="text-slate-400 text-sm">
-                      검증된 백서에 대한 신뢰성 인증을 발급하여 투자자 신뢰를 높입니다.
+                      Register verified documents on-chain with Story Protocol to strengthen IP protection.
                     </p>
                   </div>
                 </div>
@@ -430,10 +430,10 @@ export default function Home() {
           <div className="max-w-3xl mx-auto mb-8">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
-                Audit Search
+                IP Audit Search
               </h2>
               <p className="text-lg text-slate-400">
-                NFT 이미지나 프로젝트 정보를 검색하여 이미 분석된 결과를 확인하세요
+                Search for images, documents, or project information to view existing audit results
               </p>
             </div>
 
@@ -442,7 +442,7 @@ export default function Home() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center">
                     <SearchIcon className="h-5 w-5 text-blue-400 mr-2" />
-                    <h3 className="text-lg font-semibold">감사 결과 검색</h3>
+                    <h3 className="text-lg font-semibold">Search Audit Results</h3>
                   </div>
                 </div>
               </div>
@@ -451,18 +451,18 @@ export default function Home() {
                   <div className="relative flex-1">
                     <input 
                       type="text" 
-                      placeholder="NFT 컬렉션 이름, 토큰 주소, 프로젝트명 등을 입력하세요" 
+                      placeholder="Enter image hash, document ID, project name, etc." 
                       className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 text-slate-200 placeholder-slate-500" 
                     />
                     <SearchIcon className="absolute right-3 top-3 h-4 w-4 text-slate-500" />
                   </div>
                   <Button className="bg-blue-400 hover:bg-blue-500 text-slate-900 rounded-lg">
-                    검색
+                    Search
                   </Button>
                 </div>
                 
                 <div className="mt-8 text-center text-slate-400">
-                  <p>검색 결과가 여기에 표시됩니다</p>
+                  <p>Search results will appear here</p>
                 </div>
               </CardContent>
             </Card>
@@ -472,27 +472,27 @@ export default function Home() {
                 <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                   <ImageIcon className="h-5 w-5 text-blue-400" />
                 </div>
-                <h3 className="font-bold text-lg mb-2">NFT 검색</h3>
+                <h3 className="font-bold text-lg mb-2">Image Search</h3>
                 <p className="text-slate-400 text-sm">
-                  NFT 컬렉션 이름이나 토큰 주소로 이미 분석된 결과를 확인합니다.
+                  Search by image hash or metadata to view similarity analysis results.
                 </p>
               </div>
               <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
                 <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                   <FileText className="h-5 w-5 text-blue-400" />
                 </div>
-                <h3 className="font-bold text-lg mb-2">백서 검색</h3>
+                <h3 className="font-bold text-lg mb-2">Document Search</h3>
                 <p className="text-slate-400 text-sm">
-                  프로젝트명이나 토큰명으로 백서 분석 결과를 조회합니다.
+                  Look up document analysis results using document ID or keywords.
                 </p>
               </div>
               <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
                 <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
                   <ShieldCheck className="h-5 w-5 text-blue-400" />
                 </div>
-                <h3 className="font-bold text-lg mb-2">인증 내역</h3>
+                <h3 className="font-bold text-lg mb-2">Registered IP</h3>
                 <p className="text-slate-400 text-sm">
-                  인증된 프로젝트 및 NFT 목록을 확인할 수 있습니다.
+                  View IP listings and verification status registered on Story Protocol.
                 </p>
               </div>
             </div>
@@ -506,13 +506,13 @@ export default function Home() {
             <div className="flex items-center mb-4 md:mb-0">
               <ShieldCheck className="h-5 w-5 text-blue-400 mr-2" />
               <p className="text-sm text-slate-400">
-                © 2025 Audit Shield. All rights reserved.
+                © 2024 Auditsseus. For IP, By the IP, With IP.
               </p>
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">이용약관</a>
-              <a href="#" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">개인정보처리방침</a>
-              <a href="#" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">문의하기</a>
+              <a href="#" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">Terms of Service</a>
+              <a href="#" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">Contact</a>
             </div>
           </div>
         </div>
