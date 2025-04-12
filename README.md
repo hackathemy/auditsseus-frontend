@@ -14,7 +14,11 @@
 
 ## Overview  
 Auditsseus is an AI audit assistant service that automatically analyzes AI-generated creative content—such as images, videos, papers, and music—and compares it with existing IPs to detect potential plagiarism.
-Based on Eliza and the Story Protocol Plugin, Auditsseus vectorizes uploaded content in real time and performs similarity comparisons with existing IP collections. It then provides a detailed report including plagiarism rates and similar references.
+
+Based on Eliza and the Story Protocol Plugin, Auditsseus vectorizes uploaded content in real time and performs similarity comparisons with existing IP collections. 
+
+It then provides a detailed report including plagiarism rates and similar references.
+
 Furthermore, based on the analysis, Auditsseus assists in automatically registering the content as on-chain IP using Story Protocol, with a strong focus on protecting users’ creative works within the Web3 ecosystem.
 
 ![image](https://github.com/user-attachments/assets/26c11321-3605-413a-a4a1-f0bc9a673a9d)
