@@ -1,18 +1,15 @@
 "use client";
 
 import { FileUpload } from "@/components/FileUpload";
+import { Chat } from "@/components/home/Chat";
 import { Toaster } from "@/components/ui/sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   ShieldCheck, 
   FileText, 
-  Image as ImageIcon, 
   Search as SearchIcon, 
-  FileCheck, 
   Wallet, 
-  ExternalLink,
-  GanttChartSquare,
-  AlertCircle
+  GanttChartSquare
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useCallback } from "react";
@@ -153,6 +150,23 @@ export default function Home() {
     }
   };
 
+  // 메타마스크 연결 해제
+  const disconnectWallet = () => {
+    setAccount("");
+    setIsConnected(false);
+    setChainId(null);
+    toast.info("Wallet disconnected");
+  };
+
+  // 지갑 연결/해제 토글
+  const toggleWalletConnection = async () => {
+    if (isConnected) {
+      disconnectWallet();
+    } else {
+      await connectWallet();
+    }
+  };
+
   // 주소 포맷팅 (0x1234...5678 형태로)
   const formatAddress = (address: string) => {
     return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
@@ -222,14 +236,14 @@ export default function Home() {
               className={`rounded-full text-sm ${isConnected 
                 ? "border-blue-500 text-blue-400" 
                 : "bg-blue-400 hover:bg-blue-500 text-slate-900"}`}
-              onClick={connectWallet}
+              onClick={toggleWalletConnection}
               disabled={isConnecting}
             >
               <Wallet className="h-4 w-4 mr-2" />
               {isConnecting 
                 ? "Connecting..." 
                 : isConnected 
-                  ? "Connected" 
+                  ? "Disconnect" 
                   : "Connect Wallet"}
             </Button>
           </div>
@@ -263,97 +277,39 @@ export default function Home() {
         </div>
 
         {/* 지갑 연결 필요 상태 */}
-        {needsConnection() && (
-          <div className="max-w-3xl mx-auto mb-8">
-            <Card className="shadow-lg border border-blue-900/30 overflow-hidden bg-blue-900/10">
-              <CardContent className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-4">
-                <div className="rounded-full bg-blue-900/20 p-3">
-                  <AlertCircle className="h-6 w-6 text-blue-400" />
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-lg font-semibold text-slate-200 mb-1">Wallet Connection Required</h3>
-                  <p className="text-slate-400 text-sm mb-3">
-                    Connect MetaMask to access IP audit services.
-                  </p>
-                  <Button 
-                    className="bg-blue-400 hover:bg-blue-500 text-slate-900 rounded-full"
-                    onClick={connectWallet}
-                    disabled={isConnecting}
-                  >
-                    <Wallet className="h-4 w-4 mr-2" />
-                    {isConnecting ? "Connecting..." : "Connect Wallet"}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
+            Audit SSEUS
+          </h2>
+          <p className="text-lg text-slate-400">
+          AI-powered creation similarity check solution.
+          </p>
+          <p className="text-lg text-slate-400">
+          Verify the originality of your work before copyright registration reduce 
+          potential dispute risks, and secure your rights safely
+          </p>
+        </div>
+          <div className="max-w-4xl mx-auto">
+            {/* <h2 className="text-2xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Audit your images and whitepapers with AI-powered analysis
+            </h2> */}
+            <div className="mb-8">
+              <Chat onImageUploadClick={() => {
+                const fileUploadButton = document.getElementById('fileUploadButton');
+                if (fileUploadButton) {
+                  fileUploadButton.click();
+                }
+              }} />
+            </div>
+            <div className="hidden">
+              <FileUpload id="fileUploadButton" />
+            </div>
           </div>
-        )}
+      
 
         {/* NFT 이미지 감사 탭 */}
         {activeTab === "nft" && (
           <div className="max-w-3xl mx-auto mb-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
-                NFT Audit Service
-              </h2>
-              <p className="text-lg text-slate-400">
-                Analyze AI-generated NFT images for originality and potential IP infringement
-              </p>
-            </div>
-
-            {!needsConnection() && (
-              <>
-                <Card className="shadow-lg border border-slate-700 overflow-hidden bg-slate-800">
-                  <div className="bg-gradient-to-r from-blue-500/10 to-emerald-400/10 p-4 border-b border-slate-700">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <ImageIcon className="h-5 w-5 text-blue-400 mr-2" />
-                        <h3 className="text-lg font-semibold">Upload NFT Image</h3>
-                      </div>
-                      <div className="flex gap-2">
-                        <div className="flex items-center text-xs font-medium text-slate-400 bg-slate-900 rounded-full px-3 py-1 border border-slate-700">
-                          <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
-                          AI Analysis
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <CardContent className="p-6 md:p-8 bg-slate-800">
-                    <FileUpload />
-                  </CardContent>
-                </Card>
-
-                <div className="mt-12 grid md:grid-cols-3 gap-4">
-                  <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
-                    <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
-                      <FileCheck className="h-5 w-5 text-blue-400" />
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">Similarity Analysis</h3>
-                    <p className="text-slate-400 text-sm">
-                      AI vectorizes and compares images with existing IP collections in real-time.
-                    </p>
-                  </div>
-                  <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
-                    <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
-                      <ShieldCheck className="h-5 w-5 text-blue-400" />
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">Plagiarism Detection</h3>
-                    <p className="text-slate-400 text-sm">
-                      Get detailed reports with plagiarism rates and similar references.
-                    </p>
-                  </div>
-                  <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
-                    <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
-                      <ExternalLink className="h-5 w-5 text-blue-400" />
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">On-Chain Registration</h3>
-                    <p className="text-slate-400 text-sm">
-                      Automatically register verified content as on-chain IP using Story Protocol.
-                    </p>
-                  </div>
-                </div>
-              </>
-            )}
           </div>
         )}
 
@@ -466,36 +422,6 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
-
-            <div className="mt-12 grid md:grid-cols-3 gap-4">
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
-                  <ImageIcon className="h-5 w-5 text-blue-400" />
-                </div>
-                <h3 className="font-bold text-lg mb-2">Image Search</h3>
-                <p className="text-slate-400 text-sm">
-                  Search by image hash or metadata to view similarity analysis results.
-                </p>
-              </div>
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
-                  <FileText className="h-5 w-5 text-blue-400" />
-                </div>
-                <h3 className="font-bold text-lg mb-2">Document Search</h3>
-                <p className="text-slate-400 text-sm">
-                  Look up document analysis results using document ID or keywords.
-                </p>
-              </div>
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:bg-slate-700/50 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center mb-4">
-                  <ShieldCheck className="h-5 w-5 text-blue-400" />
-                </div>
-                <h3 className="font-bold text-lg mb-2">Registered IP</h3>
-                <p className="text-slate-400 text-sm">
-                  View IP listings and verification status registered on Story Protocol.
-                </p>
-              </div>
-            </div>
           </div>
         )}
       </main>

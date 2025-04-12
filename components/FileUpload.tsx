@@ -13,7 +13,11 @@ type FileWithPreview = {
   type: 'image' | 'pdf' | 'text' | 'unknown';
 };
 
-export const FileUpload = () => {
+interface FileUploadProps {
+  id?: string;
+}
+
+export const FileUpload = ({ id }: FileUploadProps = {}) => {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingProgress, setProcessingProgress] = useState(0);
@@ -152,7 +156,7 @@ export const FileUpload = () => {
               ? 'border-blue-400 bg-blue-900/20' 
               : 'border-slate-700 hover:border-blue-500/50 hover:bg-slate-700/20'}`}
         >
-          <input {...getInputProps()} />
+          <input {...getInputProps()} id={id} />
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="w-14 h-14 rounded-full bg-blue-900/50 flex items-center justify-center mb-2">
               <Upload className="h-7 w-7 text-blue-400" />
