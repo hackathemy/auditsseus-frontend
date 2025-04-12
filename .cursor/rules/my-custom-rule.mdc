@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+
+## Component Guidelines
+
+### 🧱 ShadCN Components
+
+- 모든 UI 컴포넌트는 ShadCN을 사용해야 합니다.
+- 컴포넌트 사용 전 설치 여부를 확인해야 합니다: `/components/ui` 디렉토리 체크
+- 컴포넌트 설치 명령어를 사용해야 합니다: `npx shadcn@latest add [component-name]`
+  - 주의: `npx shadcn@latest add` 명령어는 deprecated. 반드시 `npx shadcn@latest add` 사용해야 합니다
+
+### 🎨 Icons
+
+- 모든 아이콘은 Lucide React를 사용해야 합니다
+- 아이콘 임포트 방법: `import { IconName } from "lucide-react"`
+- 예시: `import { Search, Menu } from "lucide-react"`
+
+### 🧱 Component Structure
+
+- 컴포넌트는 `/components` 디렉토리 내에 위치해야 합니다
+- 페이지에서 사용하는 컴포넌트는 `/components/ui` 디렉토리에 위치해야 합니다
+- 페이지 내 특정 컴포넌트는 `/components/[page]` 디렉토리 하위에 위치해야 합니다
+
+## 🧠 Best Practices
+
+- TypeScript 타입은 반드시 정의해야 합니다
+- 컴포넌트는 재사용 가능하도록 설계해야 합니다
