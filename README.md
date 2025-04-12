@@ -5,7 +5,7 @@
 <h3 align="center">For IP, By the IP, With IP</h3>
 
 <p align="center">
-  <a href="https://auditsseus-frontend.vercel.app/" style="color: #a77dff">Demo</a> | <a href="https://www.figma.com/deck/cw1wi1kce6xglRPErdpTBI" style="color: #a77dff">Pitchdeck</a> | <a href="" style="color: #a77dff">Demo Video</a>
+  <a href="https://auditsseus-frontend.vercel.app/" style="color: #a77dff">Demo</a> | <a href="https://www.figma.com/deck/cw1wi1kce6xglRPErdpTBI" style="color: #a77dff">Pitchdeck</a> | <a href="https://youtu.be/85NKgbBRSr0" style="color: #a77dff">Demo Video</a>
 </p>
 
 <p align="center">
