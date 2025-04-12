@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/hackathemy/eliza-buidl" style="color: #a77dff">ElizaOS</a>
+  <a href="https://github.com/hackathemy/eliza-buidl/tree/main/packages/plugin-story" style="color: #a77dff">ElizaOS Story protocol</a> | <a href="https://github.com/hackathemy/eliza-buidl/tree/main/packages/plugin-upstage" style="color: #a77dff">ElizaOS Upstage</a>
 </p>
 
 ## Overview  
@@ -43,10 +43,10 @@ Furthermore, based on the analysis, Auditsseus assists in automatically register
 - Based on the plagiarism report, users can opt to automatically register the content as NFT IP via **Story Protocol**
 
 ## How to use Sponsor
-- **Story Protocol:**
+- **[Story Protocol:](https://github.com/hackathemy/eliza-buidl/tree/main/packages/plugin-story)**
 We automate the process of registering IPs using the Story Protocol and add an action that provides an audit before registering IP assets. When an audit is received, the uploaded image is compared with the IP assets searched and learned in the Story Protocol to measure the plagiarism rate and inform the user of the results. Users can later register assets with IPs and register audit results with IPs as well.
 
-- **Upstage:**
+- **[Upstage:](https://github.com/hackathemy/eliza-buidl/tree/main/packages/plugin-upstage)**
 I created an Eliza plugin using the Upstage API. Using the document parsing function and information extraction, the agent learns and provides content descriptions to the user based on that. It also provides audits when registering document IPs by determining the similarity with other documents.
 
 - **PIN AI:**
