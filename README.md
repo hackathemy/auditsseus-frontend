@@ -19,9 +19,6 @@ Furthermore, based on the analysis, Auditsseus assists in automatically register
 
 ![image](https://github.com/user-attachments/assets/26c11321-3605-413a-a4a1-f0bc9a673a9d)
 
-## Background  
-The **Espresso network** is designed to facilitate **fast and secure cross-chain transactions** with seamless interoperability. However, many users are **unfamiliar with how Espresso works** and how they can benefit from it. Meanwhile, **existing AI-powered DeFi services focus purely on automation**, lacking interactive elements that enhance user experience. **Nero Latte bridges this gap** by introducing an AI agent that not only **automates transactions** but also **educates and engages users through gamification**.  
-
 ## Problem: “Who’s protect my IP?”
 1. It is difficult to detect plagiarism issues in AI-generated content, especially style plagiarism
 2. Many similar IP issues also occurred in early protocol-related white papers, theses, etc.
