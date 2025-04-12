@@ -21,7 +21,7 @@ It then provides a detailed report including plagiarism rates and similar refere
 
 Furthermore, based on the analysis, Auditsseus assists in automatically registering the content as on-chain IP using Story Protocol, with a strong focus on protecting users’ creative works within the Web3 ecosystem.
 
-![image](https://github.com/user-attachments/assets/26c11321-3605-413a-a4a1-f0bc9a673a9d)
+![#2](https://github.com/user-attachments/assets/521e5b9c-f4d7-493e-8826-de5fd1716adb)
 
 ## Problem: “Who’s protect my IP?”
 1. It is difficult to detect plagiarism issues in AI-generated content, especially style plagiarism
@@ -46,8 +46,12 @@ Furthermore, based on the analysis, Auditsseus assists in automatically register
 - **[Story Protocol:](https://github.com/hackathemy/eliza-buidl/tree/main/packages/plugin-story)**
 We automate the process of registering IPs using the Story Protocol and add an action that provides an audit before registering IP assets. When an audit is received, the uploaded image is compared with the IP assets searched and learned in the Story Protocol to measure the plagiarism rate and inform the user of the results. Users can later register assets with IPs and register audit results with IPs as well.
 
+![photo_2025-04-13_06-52-59](https://github.com/user-attachments/assets/05395555-3955-411f-85ed-eae5372f4a62)
+
 - **[Upstage:](https://github.com/hackathemy/eliza-buidl/tree/main/packages/plugin-upstage)**
 I created an Eliza plugin using the Upstage API. Using the document parsing function and information extraction, the agent learns and provides content descriptions to the user based on that. It also provides audits when registering document IPs by determining the similarity with other documents.
+
+![photo_2025-04-13_06-55-21](https://github.com/user-attachments/assets/4542cd45-2b46-4a89-a82a-fcaba68f09a6)
 
 - **PIN AI:**
 Auditsseus is a personalized AI agent that analyzes user-generated content—such as images, papers, and videos—for potential plagiarism by comparing it to existing IPs. 
