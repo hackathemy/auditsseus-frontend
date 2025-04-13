@@ -60,9 +60,7 @@ Users interact naturally with the agent (e.g., “Check for plagiarism” or “
 Fully open-sourced and team-built, Auditsseus aligns perfectly with the PIN AI bounty by showcasing how personal data can drive useful, automated, and personalized AI workflows in real-world scenarios.
 
 - **Eigen Layer DA (Planning):**
-Auditsseus is an AI-powered IP auditing service that analyzes and verifies AI-generated content such as images, text, and soon, videos and audio files. As we handle a growing variety and volume of media files for similarity checking and IP verification, we anticipate significant challenges related to data storage and scalability.
-
-To address this, we plan to integrate EigenLayer DA as a decentralized storage and data availability layer. This will enable Auditsseus to efficiently store, access, and verify large datasets—supporting fast inference and verifiable operations across multiple content types. While still in the planning stage, our architecture is designed to offload heavy data to EigenLayer DA, ensuring scalability and performance in future production environments.
+Auditsseus is an AI-powered IP auditing service that analyzes and verifies AI-generated content such as images, text, and soon, videos and audio files. As we handle a growing variety and volume of media files for similarity checking and IP verification, we anticipate significant challenges related to data storage and scalability. To address this, we plan to integrate EigenLayer DA as a decentralized storage and data availability layer. This will enable Auditsseus to efficiently store, access, and verify large datasets—supporting fast inference and verifiable operations across multiple content types. While still in the planning stage, our architecture is designed to offload heavy data to EigenLayer DA, ensuring scalability and performance in future production environments.
 
 ## Business Model  
 **IP Registration Fee**
